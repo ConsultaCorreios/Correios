@@ -2,7 +2,6 @@
 
 namespace Correios\CalculoFrete;
 
-class CalculoFreteClient
+class Service
 {
-
 }

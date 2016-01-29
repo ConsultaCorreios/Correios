@@ -2,6 +2,6 @@
 
 namespace Correios\CEP;
 
-class CEPService
+class Client
 {
 }

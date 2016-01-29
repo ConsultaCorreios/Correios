@@ -2,6 +2,6 @@
 
 namespace Correios\Rastreio;
 
-class RastreioClient
+class Service
 {
 }
