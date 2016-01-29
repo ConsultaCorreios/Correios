@@ -1,12 +1,12 @@
 {
-	"description": "Biblioteca para utilizar serviços dos correios.",
-	"require": {},
-	"require-dev": {
-		"phpunit/phpunit": ">5.1"
-	},
-	"autoload": {
-		"psr-4": {
-			"Correios\\": "src"
-		}
-	}
+    "description": "Biblioteca para utilizar serviços dos correios.",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": ">5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Correios\\": "src"
+        }
+    }
 }
