@@ -6,7 +6,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Correios\\": "src"
+            "Correios\\": "src",
+            "CorreiosTest\\": "tests"
         }
     }
 }
