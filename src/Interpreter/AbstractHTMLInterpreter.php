@@ -16,7 +16,7 @@ abstract class AbstractHTMLInterpreter
     private $tag;
     private $properties;
 
-    public function __construct($html, $tag, array $properties)
+    public function __construct($html, $tag, array $properties = [])
     {
         $this->html = $html;
         $this->tag = $tag;
