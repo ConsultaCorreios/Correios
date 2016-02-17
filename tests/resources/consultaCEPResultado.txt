@@ -1,20 +1,26 @@
+
+
+
+
+
+
 <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
 
 <html lang="pt">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 		<!-- Meta usado no site da globo: <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> -->
-
+		
 		<script type="text/javascript" src="scripts/jquery-1.4.2.min.js"></script>
-
-		<script language="JavaScript" src="scripts/template.js" type="text/javascript"></script>
+		
+		<script language="JavaScript" src="scripts/template.js" type="text/javascript"></script> 
 		<script language="JavaScript" src="scripts/aplicacao.js" type="text/javascript"></script>
-
-
+		 
+		 
 		<link rel="stylesheet" type="text/css" href="css/template.css">
 		<link rel="stylesheet" type="text/css" href="css/aplicacao.css">
 		<title>Correios Mobile</title>
-		<link rel="icon" href="images/template/icon.png" type="image/png"/>
+		<link rel="icon" href="images/template/icon.png" type="image/png"/>		
 	</head>
 	<body>
 		<div id="divTelaAguarde">
@@ -29,7 +35,7 @@
 				<div>
 					<a href="index.do" class="logo"></a>
 				</div>
-
+				
 
 
 
@@ -49,49 +55,49 @@
     }
 </script>
 <div class="conteudo">
-    <div class="secao">Busca CEP - Endere�o</div><br/>
+    <div class="secao">Busca CEP - Endereço</div><br/>
 
     <form name="buscaCepForm" method="post" action="/movel/buscaCepConfirma.do" id="frmCep">
 
 		Logradouro <b>1 - 1</b> de <b>1</b>
-
-
-
-
+        
+        
+            
+                
                 <div class="caixacampobranco">
+                    
+                        
 
-
-
-
+                        
                             <span class="resposta">Logradouro: </span>
                             <span class="respostadestaque">
-                                Travessa Feij�
-
+                                Travessa Feijó
+                                
                             </span><br/>
                             <span class="resposta">Bairro: </span><span class="respostadestaque">Base</span><br/>
                             <span class="resposta">Localidade / UF: </span>
                             <span class="respostadestaque">
                                 Rio Branco
-
+                                
 								/AC
-
+                                
                             </span><br/>
                             <span class="resposta">CEP: </span><span class="respostadestaque">69900007</span><br/>
+                        
 
+                        
 
+                        
 
+                        
 
-
-
-
-
-
-                        <div style="text-align: right;" class="mopcoes orientacao"><span>Op��es <img style="position: relative right:0px;" src="images/template/mais.png"/></span></div>
+                        
+                        <div style="text-align: right;" class="mopcoes orientacao"><span>Opções <img style="position: relative right:0px;" src="images/template/mais.png"/></span></div>
 
                     </div>
                     <div class="divopcoes">
-
-                            <!-- Para usu�rios origin�rios do Busca CEP -->
+                        
+                            <!-- Para usuários originários do Busca CEP -->
                             <div> Simule um envio utilizando <br/> o CEP <strong>69900007</strong> como:</div>
                             <ul>
                                 <li>
@@ -101,22 +107,22 @@
                                     <a onclick="retornarParaPrecos('69900007','2');"><img src="images/template/cep_d.png"/>CEP Destino</a>
                                 </li>
                             </ul>
+                        
 
-
-
+                        
                     </div>
-
-
+                
+            
 
             <div class="botoes">
                 <div class="iconeesq">
-
+                    
                         <a href="buscaCep.do"><img src="images/template/seta-esquerda.gif"><span class="nav">&nbsp;Nova Consulta</span></a>
-
-
+                        
+                        
                 </div>
-
-
+                
+                
                 <br class="clr">
                 <input type="hidden" name="metodo" value="buscarCep" id="metodo">
                 <input type="hidden" name="numPagina" value="1">
@@ -130,7 +136,7 @@
 
     </div>
     <script>
-
+	
         $('document').ready(function(){
             $('div div.mopcoes span').click(function(){
                 $(this).parents().next('div.divopcoes').slideToggle(500);
@@ -159,7 +165,7 @@
                         cepOrigem=pCepSelecionado;
                         cepDestino=$('#cepTemp').val();
                         break;
-
+					
                     case "2":
                         cepOrigem=$('#cepTemp').val();
                         cepDestino=pCepSelecionado;
@@ -194,9 +200,9 @@
 <a href="http://www2.correios.com.br/sistemas/falecomoscorreios/">
     <img src="images/template/fcc.gif" align="absmiddle">
     <span class="orientacao">&nbsp;Fale com os Correios</span>
-</a> |
+</a> | 
 <a href="http://www.correios.com.br/">
-    <span class="orientacao">&nbsp;Vers�o cl�ssica</span>
+    <span class="orientacao">&nbsp;Versão clássica</span>
 </a><br>
 
 <div class="textorodape">&copy; Copyright 2016 Correios - Todos os direitos reservados</div>
