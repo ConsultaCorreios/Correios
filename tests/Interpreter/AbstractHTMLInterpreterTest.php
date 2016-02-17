@@ -13,18 +13,15 @@ class AbstractInterpreterTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->html = '<span class="respostadestaque">Teste Monstro</span>';
-
         $this->tag = 'span';
-
         $this->properties = [
             'class' => 'respostadestaque'
         ];
     }
 
-    public function testTheTagPropertiesIsCorrectBuilded()
+    public function testTheTagPropertiesIsCorrectBuilt()
     {
         $interpreterMock = $this->getInterpreterMock();
-
         $methodExtractValuesAccessible = $this->getAccessibleMethodByReflection($interpreterMock, 'buildTagProperties');
 
         $tagProperties = $methodExtractValuesAccessible->invokeArgs($interpreterMock, [$this->properties]);
@@ -32,15 +29,30 @@ class AbstractInterpreterTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($tagProperties, 'class="respostadestaque"');
     }
 
+    public function testTheTagPropertiesWillReturnEmptyStringIfNoPropertiesAreProvided()
+    {
+        $interpreterMock = $this->getMockForAbstractClass(
+            'Correios\Interpreter\AbstractHTMLInterpreter',
+            [
+                $this->tag,
+                $this->properties
+            ]
+        )
+        ;
+        $methodExtractValuesAccessible = $this->getAccessibleMethodByReflection($interpreterMock, 'buildTagProperties');
+
+        $tagProperties = $methodExtractValuesAccessible->invokeArgs($interpreterMock, []);
+
+        $this->assertEquals($tagProperties, '');
+    }
+
     public function testTheRegExpIsCorrectedBuilt()
     {
         $interpreterMock = $this->getInterpreterMock();
-
         $generatedProperties = $this->generateTagProperties($this->properties);
         $builtRegExp = $this->buildRegExp("span", $generatedProperties);
 
         $methodExtractValuesAccessible = $this->getAccessibleMethodByReflection($interpreterMock, 'buildRegExp');
-
         $regExp = $methodExtractValuesAccessible->invokeArgs($interpreterMock, [$generatedProperties]);
 
         $this->assertEquals($regExp, $builtRegExp);
@@ -54,8 +66,7 @@ class AbstractInterpreterTest extends \PHPUnit_Framework_TestCase
         $builtRegExp = $this->buildRegExp("span", $generatedProperties);
 
         $methodExtractValuesAccessible = $this->getAccessibleMethodByReflection($interpreterMock, 'getValuesInTags');
-
-        $extractedValues = $methodExtractValuesAccessible->invokeArgs($interpreterMock, [$builtRegExp]);
+        $extractedValues = $methodExtractValuesAccessible->invokeArgs($interpreterMock, [$this->html, $builtRegExp]);
 
         $this->assertEquals($extractedValues[0], 'Teste Monstro');
     }
@@ -65,7 +76,6 @@ class AbstractInterpreterTest extends \PHPUnit_Framework_TestCase
         return $this->getMockForAbstractClass(
                 'Correios\Interpreter\AbstractHTMLInterpreter',
                 [
-                    $this->html,
                     $this->tag,
                     $this->properties
                 ]

@@ -1,14 +1,14 @@
 <?php
 namespace CorreiosTest\CEP;
 
-use \Correios\CEP\Client;
+use \Correios\CEP\Client as CEPClient;
 
 class CEPClientTest extends \PHPUnit_Framework_TestCase
 {
-    public function testCorrectInstanceOf()
+    public function testCorrectiIstance()
     {
-        $Client = new Client();
+        $cepClient = new CEPClient('');
 
-        $this->assertTrue($Client instanceof \Correios\CEP\Client);
+        $this->assertTrue($cepClient instanceof \Correios\CEP\Client);
     }
 }
