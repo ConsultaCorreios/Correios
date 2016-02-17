@@ -1,0 +1,12 @@
+{
+    "services": {
+        "CEP": {
+            "fromMobileCorreiosSite": {
+                "url": "http://m.correios.com.br/movel/buscaCepConfirma.do",
+                "parameters": {
+                    "metodo": "buscarCep"
+                }
+            }
+        }
+    }
+}
