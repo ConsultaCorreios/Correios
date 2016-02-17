@@ -3,48 +3,67 @@ namespace Correios\Interpreter;
 
 /**
  * Interpreter class to extract the value from a given HTML tag.
+ *
+ * The Interpreter will basically receive an html to be parsed. The parse will extract an value inside a
+ * specific tag, using regular expressions.
+ *
  * If there is multiple occurrences of the tag in the parsed HTML, it'll return an array with the extracted values.
  *
  * Class AbstractHTMLInterpreter
  * @package Correios\Interpreter
  */
-abstract class AbstractHTMLInterpreter
+abstract class AbstractHTMLInterpreter implements Interpreter
 {
+    /**
+     * The draft of the Regular Expression to be used to extract the value of the chosen HTML tag.
+     * The '%s' are going to be replaced by the tag name, properties of the tag, and tag name, respectively.
+     */
     CONST DRAFT_REG_EXP_HTML = '#<\s*?%s %s>(.*?)</%s\b[^>]*>#s';
 
-    private $html;
-    private $tag;
-    private $properties;
+    /**
+     * The html tag to be extracted the values.
+     *
+     * @var String
+     */
+    protected $tag;
 
-    public function __construct($html, $tag, array $properties = [])
+    /**
+     * The properties of the html tag.
+     *
+     * @var array
+     */
+    protected $properties;
+
+    /**
+     * @param String $tag
+     * @param array $properties
+     */
+    public function __construct($tag, array $properties = [])
     {
-        $this->html = $html;
         $this->tag = $tag;
         $this->properties = $properties;
     }
 
     /**
-     * Interpret the HTML.
+     * Interpret the html.
      *
+     * @param $html
      * @return mixed
      */
-    abstract public function interpret();
+    abstract public function interpret($html);
 
     /**
      * Extract the values inside the tag.
      *
      * @return array
      */
-    protected function extractValues()
+    protected function extractValues($html)
     {
-        $tagProperties = '';
-        if (count($this->properties) != 0) {
-            $tagProperties = $this->buildTagProperties($this->properties);
-        }
+        $tagProperties = $this->buildTagProperties($this->properties);
 
         $regExp = $this->buildRegExp($tagProperties);
 
-        return $this->getValuesInTags($regExp);
+        return $this->getValuesInTags($html, $regExp);
     }
 
     /**
@@ -54,7 +73,7 @@ abstract class AbstractHTMLInterpreter
      * @param $tagProperties
      * @return string
      */
-    private function buildRegExp($tagProperties)
+    protected function buildRegExp($tagProperties)
     {
         return sprintf(self::DRAFT_REG_EXP_HTML, $this->tag, $tagProperties, $this->tag);
     }
@@ -62,12 +81,13 @@ abstract class AbstractHTMLInterpreter
     /**
      * It'll use the regular expression to extract the values.
      *
+     * @param $html
      * @param $regExp
      * @return mixed
      */
-    private function getValuesInTags($regExp)
+    protected function getValuesInTags($html, $regExp)
     {
-        preg_match_all($regExp, $this->html, $matches);
+        preg_match_all($regExp, $html, $matches);
 
         return $matches[1];
     }
@@ -78,8 +98,12 @@ abstract class AbstractHTMLInterpreter
      * @param $properties
      * @return string
      */
-    private function buildTagProperties($properties)
+    protected function buildTagProperties(array $properties = [])
     {
+        if (count($properties) == 0) {
+            return '';
+        }
+
         $tagProperties = '';
         foreach ($properties as $property => $value) {
 
